@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 3px 5px 3px 5px;
+            border: 1px solid #aaa;
+        }
+
+        th {
+            background-color: #eee;
+        }
+    </style>
 </head>
 <body>
-    <h1 th:text="${message}"></h1>
+<h1 th:text="${title}"></h1>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>name</th>
+        <th>age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user['id']}"></td>
+        <td th:text="${user['name']}"></td>
+        <td th:text="${user['age']}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

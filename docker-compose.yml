@@ -1,19 +1,22 @@
-  version: '3'
-  services:
-    app:
-      image: openjdk:8-jdk-alpine
-      ports:
-        - "80:8080"
-      volumes:
-        - .:/app
-      working_dir: /app
-      command: ./mvnw spring-boot:run
-    db:
-      image: mysql:5.7
-      environment:
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_DATABASE: sample
-        MYSQL_USER: user
-        MYSQL_PASSWORD: passwrod
-      ports:
-        - "3306:3306"
+version: '3'
+services:
+  app:
+    image: openjdk:8-jdk-alpine
+    ports:
+      - "80:8080"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ./mvnw spring-boot:run
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: sample
+      MYSQL_USER: user
+      MYSQL_PASSWORD: passwrod
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
