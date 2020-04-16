@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +10,12 @@ import java.util.Map;
 
 @Controller
 public class AppController {
-    @Autowired
+    final
     JdbcTemplate jdbcTemplate;
+
+    public AppController(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @RequestMapping("/")
     String index(Model model) {
